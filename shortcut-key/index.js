@@ -9,6 +9,14 @@ var STORIES = [
     {
         title: 'You Need To Be An Asshole to Be Great',
         link: 'https://news.layervault.com/stories/6333-you-dont-need-to-be-an-asshole-to-be-great'
+    },
+    {
+        title: 'Helpers for testing Passport strategies with the Chai assertion library',
+        link: 'https://github.com/jaredhanson/chai-passport-strategy'
+    },
+    {
+        title: 'Anima : CSS animations with a soul',
+        link: 'http://lvivski.com/anima/'
     }
 ];
 
