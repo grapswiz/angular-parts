@@ -3,7 +3,8 @@ var STORIES = [
         title: 'Ants are laying siege to the world\'s chocolate supply',
         link: 'http://www.aeonmagazine.com/nature-and-cosmos/what-can-ants-teach-us-about-agriculture/',
         date: 1375366780,
-        author: 'dwight'
+        author: 'dwight',
+        focused: true
     },
     {
         title: 'You Need To Be An Asshole to Be Great',
