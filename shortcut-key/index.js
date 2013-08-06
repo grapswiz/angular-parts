@@ -8,21 +8,27 @@ var STORIES = [
     },
     {
         title: 'You Need To Be An Asshole to Be Great',
-        link: 'https://news.layervault.com/stories/6333-you-dont-need-to-be-an-asshole-to-be-great'
+        link: 'https://news.layervault.com/stories/6333-you-dont-need-to-be-an-asshole-to-be-great',
+        author: 'pete',
+        date: 1375717811741
     },
     {
         title: 'Helpers for testing Passport strategies with the Chai assertion library',
-        link: 'https://github.com/jaredhanson/chai-passport-strategy'
+        link: 'https://github.com/jaredhanson/chai-passport-strategy',
+        author: 'pat',
+        date: 1375717811741
     },
     {
         title: 'Anima : CSS animations with a soul',
-        link: 'http://lvivski.com/anima/'
+        link: 'http://lvivski.com/anima/',
+        author: 'yuuto',
+        date: 1375717811741
     }
 ];
 
 var app = angular.module('app', []);
 
-app.controller('StoryListController', ['$scope', function ($scope) {
+app.controller('StoryListController', ['$scope', '$window', function ($scope, $window) {
     $scope.stories = STORIES;
     $scope.keydown = function(index) {
         $scope.stories.forEach(function(elm) {
@@ -56,6 +62,8 @@ app.controller('StoryListController', ['$scope', function ($scope) {
 
         $scope.stories[index].selected = true;
         $scope.stories[index].focused = true;
+
+        $window.location.href = $scope.stories[index].link;
     };
 }]);
 
