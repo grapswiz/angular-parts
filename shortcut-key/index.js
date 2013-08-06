@@ -3,8 +3,7 @@ var STORIES = [
         title: 'Ants are laying siege to the world\'s chocolate supply',
         link: 'http://www.aeonmagazine.com/nature-and-cosmos/what-can-ants-teach-us-about-agriculture/',
         date: 1375366780,
-        author: 'dwight',
-        focused: true
+        author: 'dwight'
     },
     {
         title: 'You Need To Be An Asshole to Be Great',
@@ -30,39 +29,30 @@ var app = angular.module('app', []);
 
 app.controller('StoryListController', ['$scope', '$window', function ($scope, $window) {
     $scope.stories = STORIES;
+    $scope.stories[0].focused = true;
     $scope.keydown = function(index) {
-        $scope.stories.forEach(function(elm) {
-            elm.selected = false;
-            elm.focused = false;
-        });
-
         if (index >= $scope.stories.length) {
             return;
         }
-        $scope.stories[index].selected = true;
+
+        $scope.stories.forEach(function(elm) {
+            elm.focused = false;
+        });
+
         $scope.stories[index].focused = true;
     };
     $scope.up = function(index) {
-        $scope.stories.forEach(function(elm) {
-            elm.selected = false;
-            elm.focused = false;
-        });
-
         if (index < 0) {
             return;
         }
-        $scope.stories[index].selected = true;
-        $scope.stories[index].focused = true;
-    };
-    $scope.enter = function(index) {
+
         $scope.stories.forEach(function(elm) {
-            elm.selected = false;
             elm.focused = false;
         });
 
-        $scope.stories[index].selected = true;
         $scope.stories[index].focused = true;
-
+    };
+    $scope.enter = function(index) {
         $window.location.href = $scope.stories[index].link;
     };
 }]);

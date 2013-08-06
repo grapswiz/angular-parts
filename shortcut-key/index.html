@@ -10,7 +10,7 @@
 <body ng-app="app">
 <div ng-controller="StoryListController" class="inner">
     <div ng-repeat="story in stories">
-        <div tabindex="0" class="story" ng-class="{'selected': story.selected}" keydown down="keydown($index+1)" up="up($index-1)" v-space="enter($index)" focus="story.focused">
+        <div tabindex="0" class="story" ng-class="{'selected': story.focused}" keydown down="keydown($index+1)" up="up($index-1)" v-space="enter($index)" focus="story.focused">
             <div><a ng-href="{{ story.link }}" tabindex="-1" class="title">{{ story.title }}</a></div>
             <div>{{ story.author }} {{ story.date|date:"yyyy/MM/dd" }}</div>
         </div>
