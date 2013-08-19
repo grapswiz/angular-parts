@@ -25,71 +25,72 @@ var STORIES = [
     }
 ];
 
-var app = angular.module('app', []);
+var app = angular.module('app', ['app.directive']);
 
 app.controller('StoryListController', ['$scope', '$window', function ($scope, $window) {
     $scope.stories = STORIES;
     $scope.stories[0].focused = true;
-    $scope.keydown = function(index) {
+    $scope.keydown = function (index) {
         if (index >= $scope.stories.length) {
             return;
         }
 
-        $scope.stories.forEach(function(elm) {
+        $scope.stories.forEach(function (elm) {
             elm.focused = false;
         });
 
         $scope.stories[index].focused = true;
     };
-    $scope.up = function(index) {
+    $scope.up = function (index) {
         if (index < 0) {
             return;
         }
 
-        $scope.stories.forEach(function(elm) {
+        $scope.stories.forEach(function (elm) {
             elm.focused = false;
         });
 
         $scope.stories[index].focused = true;
     };
-    $scope.enter = function(index) {
+    $scope.enter = function (index) {
         $window.location.href = $scope.stories[index].link;
     };
 }]);
 
-app.directive('keydown', function () {
-    return function (scope, elm, attr) {
-        elm.bind('keydown', function (e) {
-            switch (e.keyCode) {
-                case 34:
-                case 39:
-                case 40:
-                case 74:
-                    return scope.$apply(attr.down);
+angular.module('app.directive', [])
+    .directive('keydown', function () {
+        return function (scope, elm, attr) {
+            elm.bind('keydown', function (e) {
+                switch (e.keyCode) {
+                    case 34:
+                    case 39:
+                    case 40:
+                    case 74:
+                        return scope.$apply(attr.down);
 
-                case 32:
-                    e.preventDefault();
-                    return scope.$apply(attr.vSpace);
+                    case 32:
+                        e.preventDefault();
+                        return scope.$apply(attr.vSpace);
 
-                case 33:
-                case 37:
-                case 38:
-                case 75:
-                    return scope.$apply(attr.up);
-            }
-        });
-    };
-});
-
-app.directive('focus', function($parse) {
-    return function (scope, elm, attr) {
-        scope.$watch(attr.focus, function(focused) {
-            if (!focused) {
-                return;
-            }
-            if (focused) {
-                elm[0].focus();
-            }
-        });
-    };
-});
+                    case 33:
+                    case 37:
+                    case 38:
+                    case 75:
+                        return scope.$apply(attr.up);
+                }
+            });
+        };
+    })
+    
+    .directive('focus', function ($parse) {
+        return function (scope, elm, attr) {
+            scope.$watch(attr.focus, function (focused) {
+                if (!focused) {
+                    return;
+                }
+                if (focused) {
+                    elm[0].focus();
+                }
+            });
+        };
+    });
